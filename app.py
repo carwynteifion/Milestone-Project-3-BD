@@ -24,8 +24,35 @@ coll_recipes = mongo.db.recipes
 
 
 @app.route("/")
-def hello():
-    return("Hello, world")
+@app.route("/get_recipes")
+def get_recipes():
+    recipes = list(coll_recipes.find())
+    return render_template("recipes.html", recipes=recipes)
+
+
+@app.route("/register.html", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        existing_user = coll_users.find_one(
+            {"username": request.form.get("username".lower()})
+        
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        coll_users.insert_one(register)
+
+        # put the new user into session cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful")
+        return redirect(url_for("my_recipes", username=session["user"]))
+
+    return render_template("register.html")
+
+
 
 
 if __name__ == "__main__":
