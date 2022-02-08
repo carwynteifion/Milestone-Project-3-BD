@@ -18,10 +18,14 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+# Collections
+coll_users = mongo.db.users
+coll_recipes = mongo.db.recipes
+
 
 @app.route("/")
 def hello():
-    return("Hello, World!")
+    return("Hello, world")
 
 
 if __name__ == "__main__":

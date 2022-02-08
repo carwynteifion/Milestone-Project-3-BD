@@ -13,9 +13,80 @@
     {% block styles %}
     {% endblock %}
 
-    <title>Hello world</title>
+    <title>Isadora's Kitchen</title>
 </head>
 <body>
-    <p>Hello world</p>
+    <header>
+        <!-- top navbar -->
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Isadora's Kitchen</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Browse Recipes</a></li>
+                    <li><a href="#">Search</a></li>
+                    {% if session.user %}
+                        <li><a href="#">My Recipes</a></li>
+                        <li><a href="#">Add New Recipe</a></li>
+                        <li><a href="#">Log Out</a></li>
+                    {% else %}
+                        <li><a href="#">Log In</a></li>
+                        <li><a href="#">Register</a></li> 
+                    {% endif %}              
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- mobile sidenav -->
+        <ul class="sidenav" id="mobile-demo">
+            <li><h4 class="center-align">Isadora's Kitchen</h4></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Browse Recipes</a></li>
+            <li><a href="#">Search</a></li>
+            {% if session.user %}
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Add New Recipe</a></li>
+                <li><a href="#">Log Out</a></li>
+            {% else %}
+                <li><a href="#">Log In</a></li>
+                <li><a href="#">Register</a></li> 
+            {% endif %}
+        </ul>
+    </header>
+
+    <section>
+        <!-- flash messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row flashes">
+                        <h4 class="center-align">{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="social-media-icons">
+            <a href="https://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://www.twitter.com" aria-label="Twitter"><i class="fab fa-twitter-square"></i></a>
+            <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.github.com" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>
