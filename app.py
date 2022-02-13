@@ -127,7 +127,8 @@ def add_recipe():
     """
     Adds recipe to database
     """
-    if "user" in session:
+    if "user" in session: 
+        created_by = coll_users.find_one({"username": session["user"]})["_id"]
         if request.method == "POST":
             # Ingredients and Prep converted into lists
             ingredients = request.form.get("ingredients").splitlines()
@@ -137,13 +138,18 @@ def add_recipe():
             recipe = {
                 "recipeName": request.form.get("recipe_name"),
                 "cuisine": request.form.get("cuisine"),
+                "recipeDescription": request.form.get("recipe_description") ,
                 "method": method,
                 "ingredients": ingredients,
-                "createdBy": session["user"]
+                "createdBy": created_by
             }
-            coll_recipes.insert_one(recipe)
+            insertRecipe = coll_recipes.insert_one(recipe)
+            coll_users.update_one(
+                {"_id": ObjectId(created_by)},
+                {"$push": {"recipes": insertRecipe.inserted_id}})
             flash("Recipe Successfully Added")
-            return redirect(url_for("get_recipes"))
+            return redirect(url_for("view_recipe",
+            recipe_id=insertRecipe.inserted_id))
 
         cuisines = coll_cuisines.find().sort("cuisine_name", 1)
         return render_template("addrecipe.html", cuisines=cuisines)
@@ -152,26 +158,60 @@ def add_recipe():
         flash("You must be logged in to do this!")
         return redirect(url_for("login"))
 
-@app.route("/view_recipe")
-def view_recipe():
+
+@app.route("/view_recipe/<recipe_id>")
+def view_recipe(recipe_id):
     """
     View recipe
     """
+    recipe_name = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
+    created_by = coll_users.find_one(
+        {"_id": ObjectId(recipe_name.get("createdBy"))})["username"]
+    return render_template(
+        "viewrecipe.html",
+        recipe=recipe_name,
+        created_by=created_by)
 
 
-@app.route("/update_recipe")
-def update_recipe():
+
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
     """
-    Updates recipe details in database
+    Edits recipe
     """
+    if "user" in session:
+        if request.method == "POST":
+            submit = {
+                "recipeName": request.form.get("recipe_name"),
+                "cuisine": request.form.get("cuisine"),
+                "recipeDescription": recipe_description,
+                "method": method,
+                "ingredients": ingredients,
+                "createdBy": created_by
+            }
+            coll_recipes.replace_one({"_id": ObjectId(recipe_id)}, submit)
+            flash("Recipe Successfully Updated")
+
+        recipe = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
+        cuisines = coll_cuisines.find().sort("cuisine_name", 1)
+        return render_template("edit_recipe.html", recipe=recipe, cuisines=cuisines)
+    else:
+        flash("You must be logged in to do this")
+        return url_for("login")
 
 
-@app.route("/delete_recipe")
-def delete_recipe():
+@app.route("/delete_recipe/<recipe_id>")
+def delete_recipe(recipe_id):
     """
     Deletes recipe from database
     """
-
+    if "user" in session:
+        coll_recipes.delete_one({"_id": ObjectId(recipe_id)})
+        flash("Recipe Successfully Deleted")
+        return redirect(url_for("get_recipes"))
+    else:
+        flash("You must be logged in to do this")
+        return redirect(url_for("login"))
 
 
 if __name__ == "__main__":

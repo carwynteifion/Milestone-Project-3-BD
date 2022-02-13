@@ -3,9 +3,7 @@
 
 <div class="row">
     {% for recipe in recipes %}
-        <div class="card-image">
-            <a href="{{ url_for('view_recipe') }}">View Recipe</a>
-        </div>
+        {% include "partials/_cards.html" %}
     {% endfor %}
 </div>
 
