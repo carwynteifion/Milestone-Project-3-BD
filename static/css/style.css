@@ -1,0 +1,21 @@
+.text-shadow {
+    text-shadow: 2px 2px 2px rgba(0,0, 0, 0.5);
+}
+
+.social-media-icons {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.card-content a {
+    color: black;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+body {
+    background: url(../img/bg.png) no-repeat center center fixed;
+    background-size: cover;
+}

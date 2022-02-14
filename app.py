@@ -25,15 +25,24 @@ coll_cuisines = mongo.db.cuisines
 
 
 @app.route("/")
-@app.route("/get_recipes")
-def get_recipes():
+@app.route("/home")
+
+def home():
     """
     Pulls recipes list from the DB and displays on rendered
     home page.
     """
     recipes = list(coll_recipes.find())
-    return render_template("recipes.html", recipes=recipes)
+    return render_template("home.html", recipes=recipes)
 
+@app.route("/browse_recipes")
+def browse_recipes():
+    """
+    Pulls recipes list from the DB and displays on rendered
+    home page.
+    """
+    recipes = list(coll_recipes.find())
+    return render_template("browserecipes.html", recipes=recipes)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -73,7 +82,7 @@ def register():
         # put the new user into session cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful")
-        return redirect(url_for("get_recipes", username=session["user"]))
+        return redirect(url_for("home", username=session["user"]))
 
     return render_template("register.html")
 
@@ -98,7 +107,7 @@ def login():
                     flash("Welcome, {}".format(
                         request.form.get("username")))
                     return redirect(url_for(
-                        "get_recipes", username=session["user"]))
+                        "home", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -122,12 +131,26 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/my_recipes")
+def my_recipes():
+    """
+    Renders template for user to view their own
+    recipes. Redirects to login page if user is
+    not logged in.
+    """
+    if "user" in session:
+        return render_template("myrecipes.html")
+    else:
+        flash("You must log in to view your recipes")
+        return redirect(url_for("login"))
+
+
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     """
     Adds recipe to database
     """
-    if "user" in session: 
+    if "user" in session:
         created_by = coll_users.find_one({"username": session["user"]})["_id"]
         if request.method == "POST":
             # Ingredients and Prep converted into lists
@@ -138,20 +161,20 @@ def add_recipe():
             recipe = {
                 "recipeName": request.form.get("recipe_name"),
                 "cuisine": request.form.get("cuisine"),
-                "recipeDescription": request.form.get("recipe_description") ,
+                "recipeDescription": request.form.get("recipe_description"),
                 "method": method,
                 "ingredients": ingredients,
                 "createdBy": created_by
             }
-            insertRecipe = coll_recipes.insert_one(recipe)
+            insert_recipe = coll_recipes.insert_one(recipe)
             coll_users.update_one(
                 {"_id": ObjectId(created_by)},
-                {"$push": {"recipes": insertRecipe.inserted_id}})
+                {"$push": {"recipes": insert_recipe.inserted_id}})
             flash("Recipe Successfully Added")
-            return redirect(url_for("view_recipe",
-            recipe_id=insertRecipe.inserted_id))
+            return redirect(
+                url_for("view_recipe", recipe_id=insert_recipe.inserted_id))
 
-        cuisines = coll_cuisines.find().sort("cuisine_name", 1)
+        cuisines = coll_cuisines.find().sort("cuisineName", 1)
         return render_template("addrecipe.html", cuisines=cuisines)
 
     else:
@@ -173,7 +196,6 @@ def view_recipe(recipe_id):
         created_by=created_by)
 
 
-
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     """
@@ -193,8 +215,8 @@ def edit_recipe(recipe_id):
             flash("Recipe Successfully Updated")
 
         recipe = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
-        cuisines = coll_cuisines.find().sort("cuisine_name", 1)
-        return render_template("edit_recipe.html", recipe=recipe, cuisines=cuisines)
+        cuisines = coll_cuisines.find().sort("cuisineName", 1)
+        return render_template("editrecipe.html", recipe=recipe, cuisines=cuisines)
     else:
         flash("You must be logged in to do this")
         return url_for("login")
@@ -208,7 +230,7 @@ def delete_recipe(recipe_id):
     if "user" in session:
         coll_recipes.delete_one({"_id": ObjectId(recipe_id)})
         flash("Recipe Successfully Deleted")
-        return redirect(url_for("get_recipes"))
+        return redirect(url_for("home"))
     else:
         flash("You must be logged in to do this")
         return redirect(url_for("login"))

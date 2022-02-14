@@ -1,23 +1,15 @@
 <div class="col s12 m6 l3">
-    <div class="card hoverable sticky-action">
-        <div class="card-image waves-effect waves-block waves-light">
+    <div class="card hoverable">
+        <div class="card-image">
             {% if recipe.imgUrl %}
             <img class="activator" src="{{ recipe.imgUrl }}" alt="Recipe Image" rel="noopener">
             {% else %}
             <img class="activator" src="{{ url_for('static', filename='img/default.png') }}" alt="Recipe Image" rel="noopener">
             {% endif %}
+        </div>
+        <div class="card-content grey lighten-3">
             <a class="card-title" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">{{ recipe.recipeName }}</a>
-        </div>
-        <div class="card-action">
-            <a class="site-blue-text bold" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">View Recipe</a>
-        </div>
-        <div class="card-reveal">
-            <h5 class="card-title center-align">
-                <i class="fas fa-times material-icons right"></i>
-                <span class="grey-text text-darken-4 bold">{{ recipe.recipeName }}
-                </span>
-            </h5>
-            <p>text</p>
+            <a class="underline" href="{{ url_for('view_recipe', recipe_id=recipe._id) }}">View Recipe</a>
         </div>
     </div>
 </div>

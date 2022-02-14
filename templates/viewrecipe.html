@@ -2,19 +2,35 @@
 {% block content %}
 
 <div class="row">
-    <div class="col s12 m4 l4">
+    <div class="col">
         <h3>{{ recipe.recipeName }}</h3>
+        {% if recipe.imgUrl %}
+        <div class="col s12 m12 l12">
+            <img src="{{ recipe.imgUrl }}" alt="image of {{ recipe.recipeName }}">
+        </div>
+        {% endif %}
         <p>{{ recipe.recipeDescription }}</p>
         <ul>
+            <li><h4>Ingredients</h4></li>
             {% for ingredient in recipe.ingredients %}
             <li>{{ ingredient }}</li>
             {% endfor %}
         </ul>        
         <ul>
+            <li><h4>Method</h4></li>
             {% for step in recipe.method %}
             <li>{{ step }}</li>
+            <br>
             {% endfor %}
-        </ul>  
+        </ul>
+        {% if "user" in session %}
+        <a class="btn waves-effect waves-light yellow darken-1 black-text text-shadow" href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">Edit Recipe
+            <i class="fas fa-paper material-icons right"></i>
+        </a>
+        <a class="btn waves-effect waves-light red text-shadow" href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}">Delete Recipe
+            <i class=" fas fa-times material-icons right"></i>
+        </a>
+        {% endif %}
     </div>
 </div>
 
