@@ -26,7 +26,6 @@ coll_cuisines = mongo.db.cuisines
 
 @app.route("/")
 @app.route("/home")
-
 def home():
     """
     Pulls recipes list from the DB and displays on rendered
@@ -35,14 +34,6 @@ def home():
     recipes = list(coll_recipes.find())
     return render_template("home.html", recipes=recipes)
 
-@app.route("/browse_recipes")
-def browse_recipes():
-    """
-    Pulls recipes list from the DB and displays on rendered
-    home page.
-    """
-    recipes = list(coll_recipes.find())
-    return render_template("browserecipes.html", recipes=recipes)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -201,8 +192,7 @@ def update_recipe_details(recipe_id):
                 recipe_to_edit=recipe_to_edit,
                 ingredients=ingredients,
                 method=method,
-                cuisines=cuisines
-            )
+                cuisines=cuisines)
         else:
             flash("Only the recipe author can do this")
             return redirect(url_for("view_recipe", recipe_id=recipe_id))
@@ -256,11 +246,38 @@ def delete_recipe(recipe_id):
     Deletes recipe from database
     """
     if "user" in session:
-        coll_recipes.delete_one({"_id": ObjectId(recipe_id)})
-        flash("Recipe Successfully Deleted")
-        return redirect(url_for("home"))
+        recipe_to_delete = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
+        user = coll_users.find_one({"username": session["user"]})["_id"]
+        if user == recipe_to_delete.get("createdBy"):
+            created_by = coll_recipes.find_one({"_id": ObjectId(recipe_id)})["createdBy"]
+            coll_recipes.delete_one({"_id": ObjectId(recipe_id)})
+            coll_users.update_one(
+                {"_id": ObjectId(created_by)},
+                {"$pull": {"recipes": ObjectId(recipe_id)}})
+            return redirect(url_for("home"))
+        else:
+            flash("Only the recipe author can do this")
+            return redirect(url_for("view_recipe", recipe_id=recipe_id))
     else:
         flash("You must be logged in to do this")
+        return redirect(url_for("login"))
+
+
+@app.route("/my_recipes/<username>")
+def my_recipes(username):
+    """
+    Renders user's own recipes.
+    """
+    if "user" in session:
+        current_user = coll_users.find_one({"username": session["user"]})["_id"]
+        user_id = coll_users.find_one({"username": username})["_id"]
+        if current_user == user_id:
+            return render_template("myrecipes.html")              
+        else:
+            flash("You do not have access to this page")
+            return redirect(url_for("home"))
+    else:
+        flash("You must be logged in first")
         return redirect(url_for("login"))
 
 
