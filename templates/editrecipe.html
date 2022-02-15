@@ -3,13 +3,14 @@
 
 <h3 class="light-blue-text text-darken-4 center-align">Edit Recipe</h3>
 <div class="row card-panel grey lighten-5">
-    <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">  
+    <form class="col s12" method="POST"
+        action="{{ url_for('edit_recipe', recipe_id=recipe_to_edit._id) }}">  
         <!-- recipe name -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
                 <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50"
-                    type="text" autofocus class="validate" required>
+                    type="text" autofocus class="validate" value="{{ recipe_to_edit.recipeName }}" required>
                 <label for="recipe_name">Recipe Name</label>
             </div>
         </div>
@@ -31,26 +32,48 @@
             <div class="input-field col s12">
                 <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
                 <textarea id="recipe_description" name="recipe_description" minlength="5"
-                    maxlength="200" class="materialize-textarea validate" required></textarea>
+                    maxlength="300" class="materialize-textarea validate"
+                    value="{{ recipe_to_edit.recipeDescription }}" required></textarea>
                 <label for="recipe_description">Recipe Description</label>
             </div>
         </div>
         <!-- Ingredients -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+                <i class="fas fa-utensils prefix light-blue-text text-darken-4"></i>
                 <textarea id="ingredients" name="ingredients" minlength="5"
-                    maxlength="500" class="materialize-textarea validate" required></textarea>
-                <label for="ingredients">Ingredients (use new line for each ingredient)</label>
+                    maxlength="1000" class="materialize-textarea validate"
+                    placeholder="Use new line for each ingredient" required>
+                    {% for ingredient in recipe_to_edit.ingredients -%}
+                    {{ ingredient }}
+                    {% endfor -%}
+                </textarea>
+                <label for="ingredients">Ingredients</label>
             </div>
         </div>
         <!-- Method -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+                <i class="fas fa-blender prefix light-blue-text text-darken-4"></i>
                 <textarea id="method" name="method" minlength="5"
-                    maxlength="500" class="materialize-textarea validate" required></textarea>
-                <label for="method">Method (use new line for each step)</label>
+                    maxlength="500" class="materialize-textarea validate"
+                    placeholder="Use new line for each step" required>
+                    {% for step in recipe_to_edit.method -%}
+                    {{ step }}
+                    {% endfor -%}</textarea>
+                <label for="method">Method</label>
+            </div>
+        </div>
+        <!-- Paste Image URL -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-link prefix light-blue-text text-darken-4"></i>
+                <textarea id="img_url" name="img_url" minlength="5"
+                    maxlength="500" class="materialize-textarea validate"
+                    value="{{ recipe_to_edit.imgUrl }}"
+                    placeholder="Paste your image's URL here">
+                </textarea>
+                <label for="img_url">Image URL (optional)</label>
             </div>
         </div>
         <!-- edit/delete buttons -->
@@ -58,7 +81,7 @@
             <div class="col s12 center-align">
                 <button type="submit" class="btn green darken-1 text-shadow">
                     Update Recipe <i class="fas fa-plus-square right"></i></button>
-                <a href="{{ url_for('view_recipe', recipe_id=recipe._id) }}" class="btn red text-shadow">
+                <a href="{{ url_for('view_recipe', recipe_id=recipe) }}" class="btn red text-shadow">
                     Cancel <i class="fas fa-times right"></i></a>
             </div>
         </div>

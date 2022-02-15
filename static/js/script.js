@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $(".sidenav").sidenav({
-      edge: "right"
+      edge: "left"
     });
     $('select').formSelect();
 });

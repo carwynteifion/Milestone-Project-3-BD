@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3>My Recipes</h3>
-
-<div class="row">
-    {% for recipe in recipes %}
-        {% include "partials/_cards.html" %}
-    {% endfor %}
+<div class="row card">
+    <div class="col card-content">
+        <h3 class="card-title">My Recipes</h3>
+        <div class="row">
+            {% for recipe in recipes %}
+                {% include "partials/_cards.html" %}
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}

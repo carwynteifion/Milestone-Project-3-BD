@@ -5,6 +5,12 @@
 .social-media-icons {
     text-align: center;
     font-size: 2rem;
+    background-color: rgba(0,0, 0, 0.3);
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
 }
 
 .card-content a {
@@ -18,4 +24,21 @@
 body {
     background: url(../img/bg.png) no-repeat center center fixed;
     background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    position: relative;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+#view-recipe-card {
+    width: 100%;
+}
+
+#view-recipe-card img {
+    max-width: 200px;
 }

@@ -18,25 +18,27 @@
 <body>
     <header>
         <!-- top navbar -->
-        <nav class="nav-extended yellow darken-2 text-shadow">
-            <div class="nav-wrapper">
-                <a href="{{ url_for('home') }}" class="brand-logo">Isadora's Kitchen</a>
-                <a href="{{ url_for('home') }}" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="#">Browse Recipes</a></li>
-                    <li><a href="#">Search</a></li>
-                    {% if session.user %}
-                        <li><a href="{{ url_for('my_recipes') }}">My Recipes</a></li>
-                        <li><a href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
-                        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-                    {% else %}
-                        <li><a href="{{ url_for('login') }}">Log In</a></li>
-                        <li><a href="{{ url_for('register') }}">Register</a></li> 
-                    {% endif %}             
-                </ul>
-            </div>
-        </nav>
+        <div class="navbar-fixed">
+            <nav class="nav-extended yellow darken-2 text-shadow">
+                <div class="nav-wrapper">
+                    <a href="{{ url_for('home') }}" class="brand-logo">Isadora's Kitchen</a>
+                    <a href="{{ url_for('home') }}" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="#">Browse Recipes</a></li>
+                        <li><a href="#">Search</a></li>
+                        {% if session.user %}
+                            <li><a href="{{ url_for('my_recipes') }}">My Recipes</a></li>
+                            <li><a href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
+                            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                        {% else %}
+                            <li><a href="{{ url_for('login') }}">Log In</a></li>
+                            <li><a href="{{ url_for('register') }}">Register</a></li> 
+                        {% endif %}             
+                    </ul>
+                </div>
+            </nav>
+        </div>
         
         <!-- mobile sidenav -->
         <ul class="sidenav" id="mobile-demo">
@@ -78,7 +80,7 @@
             <a href="https://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-square"></i></a>
             <a href="https://www.twitter.com" aria-label="Twitter"><i class="fab fa-twitter-square"></i></a>
             <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.github.com" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.github.com/" aria-label="GitHub"><i class="fab fa-github"></i></a>
         </div>
     </footer>
 

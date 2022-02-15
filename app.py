@@ -131,20 +131,6 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/my_recipes")
-def my_recipes():
-    """
-    Renders template for user to view their own
-    recipes. Redirects to login page if user is
-    not logged in.
-    """
-    if "user" in session:
-        return render_template("myrecipes.html")
-    else:
-        flash("You must log in to view your recipes")
-        return redirect(url_for("login"))
-
-
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     """
@@ -162,8 +148,9 @@ def add_recipe():
                 "recipeName": request.form.get("recipe_name"),
                 "cuisine": request.form.get("cuisine"),
                 "recipeDescription": request.form.get("recipe_description"),
-                "method": method,
                 "ingredients": ingredients,
+                "method": method,
+                "imgUrl": request.form.get("img_url"),
                 "createdBy": created_by
             }
             insert_recipe = coll_recipes.insert_one(recipe)
@@ -196,30 +183,71 @@ def view_recipe(recipe_id):
         created_by=created_by)
 
 
+@app.route("/update_recipe_details/<recipe_id>")
+def update_recipe_details(recipe_id):
+    """
+    Populates Edit Recipe page with current recipe
+    details from database
+    """
+    if "user" in session:
+        recipe_to_edit = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
+        user = coll_users.find_one({"username": session["user"]})["_id"]
+        if user == recipe_to_edit.get("createdBy"):
+            ingredients = recipe_to_edit.get("ingredients")
+            method = recipe_to_edit.get("method")
+            cuisines = coll_cuisines.find().sort("cuisineName", 1)
+            return render_template(
+                "editrecipe.html",
+                recipe_to_edit=recipe_to_edit,
+                ingredients=ingredients,
+                method=method,
+                cuisines=cuisines
+            )
+        else:
+            flash("Only the recipe author can do this")
+            return redirect(url_for("view_recipe", recipe_id=recipe_id))
+    else:
+        flash("You must be logged in to do this")
+        return redirect(url_for("login"))
+
+
+
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     """
-    Edits recipe
+    Posts update to selected recipe to database
     """
     if "user" in session:
-        if request.method == "POST":
-            submit = {
-                "recipeName": request.form.get("recipe_name"),
-                "cuisine": request.form.get("cuisine"),
-                "recipeDescription": recipe_description,
-                "method": method,
-                "ingredients": ingredients,
-                "createdBy": created_by
-            }
-            coll_recipes.replace_one({"_id": ObjectId(recipe_id)}, submit)
-            flash("Recipe Successfully Updated")
+        recipe_to_edit = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
+        user = coll_users.find_one({"username": session["user"]})["_id"]
+        if user == recipe_to_edit.get("createdBy"):
+            if request.method == "POST":
+                recipe = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
+                ingredients = request.form.get("ingredients").splitlines()
+                method = request.form.get("method").splitlines()
+                created_by = recipe.get("created_by")
+                submit = {
+                    "recipeName": request.form.get("recipe_name"),
+                    "cuisine": request.form.get("cuisine"),
+                    "recipeDescription": request.form.get("recipe_description"),
+                    "ingredients": ingredients,
+                    "method": method,
+                    "createdBy": created_by,
+                    "imgUrl": request.form.get("img_url")
+                }
+                coll_recipes.replace_one({"_id": ObjectId(recipe_id)}, submit)
+                flash("Recipe Successfully Updated")
 
-        recipe = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
-        cuisines = coll_cuisines.find().sort("cuisineName", 1)
-        return render_template("editrecipe.html", recipe=recipe, cuisines=cuisines)
+            recipe = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
+            cuisines = coll_cuisines.find().sort("cuisineName", 1)
+            return render_template(
+                "viewrecipe.html", recipe=recipe, cuisines=cuisines)
+        else:
+            flash("Only the recipe author can do this")
+            return redirect(url_for("view_recipe", recipe_id=recipe_id))
     else:
         flash("You must be logged in to do this")
-        return url_for("login")
+        return redirect(url_for("login"))
 
 
 @app.route("/delete_recipe/<recipe_id>")
