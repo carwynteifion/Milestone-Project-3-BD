@@ -1,108 +1,186 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Isadora's Kitchen
+Link to the live project here: https://milestone-project-3-bd.herokuapp.com/
 
-Welcome carwynteifion,
+This is a website for Isadora's Kitchen, designed as a responsive site for people to create, read, update and delete their own cooking recipes, as well as view those created by other users.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+<h2 align="center"><img src="assets/img/responsive.png"></h2> - REMEMBER TO ADD THIS
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+# Table of Contents
+1. [User Experience](#user-experience)
+  - [User Stories](#user-stories)
+  - [Design](#design)
+  - [Wireframes](#wireframes)
 
-## Gitpod Reminders
+2. [Features](#features)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+3. [Technologies Used](#technologies-used)
+  - [Languages Used](#languages-used)
+  - [Frameworks, Libraries and Programs Used](#frameworks-libraries-and-programs-used)
 
-`python3 -m http.server`
+4. [Testing](testing)
+  - [HTML and CSS Validation](#html-and-css-validation)
+  - [Testing User Stories from UX Section](#testing-user-stories-from-ux-section)
+  - [Further Testing](#further-testing)
+  - [Known Bugs](#known-bugs)
+  - [Fixed Bugs](#fixed-bugs)
 
-A blue button should appear to click: _Make Public_,
+5. [Deployment](#deployment)
+  - [GitHub Pages](#github-pages)
+  - [Forking the GitHub Repository](#forking-the-github-repository)
+  - [Making a Local Clone](#making-a-local-clone)
 
-Another blue button should appear to click: _Open Browser_.
+6. [Credits](#credits)
+  - [Code](#code)
+  - [Content](#content)
+  - [Media](#media)
+  - [Acknowledgements](#acknowledgements)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
 
-A blue button should appear to click: _Make Public_,
+## User Experience
+- User stories
+  - First Time Visitor Goals
+    
+    a. As a first time visitor, I want to understand the site's purpose so I can determine if it is relevant to what I need.
 
-Another blue button should appear to click: _Open Browser_.
+  - Returning Visitor Goals
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+  - Frequent Visitor Goals
 
-To log into the Heroku toolbelt CLI:
+- Design
+  - Colour Scheme
+  - Typography
+  - Imagery
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+- Wireframes - can be viewed here - WIREFRAME LINK
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Features
+- Responsive on mobile, tablet and desktop sizes
+- Interactive elements
+- CRUD functionality
 
-------
+[Back to top](#isadora's-kitchen)
 
-## Release History
+## Technologies Used
+### Languages Used
+- HTML5
+- CSS3
+- JavaScript
+- Python 3
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### Frameworks, Libraries and Programs used
+1. [Materialize](https://materializecss.com/) - used as the visual framework for this project.
+2. [Balsamiq Wireframes](https://balsamiq.com/wireframes/) - used in the design process to draw the site's wireframes.
+3. [Flask](https://flask.palletsprojects.com/) - used to build the web pages for this project as templates.
+4. [Font Awesome](https://fontawesome.com/) - used to add icons on each page of the site to improve UX.
+5. [Git](https://gitpod.io/) - used for version control via Gitpod. The terminal was used to commit and push code to GitHub.
+6. [GitHub](https://www.github.com/) - used to store the project's pushed code from Git.
+7. [Werkzeug](https://werkzeug.palletsprojects.com/) - used for password hashing, installed as a Flask dependency.
+8. [Jinja](https://jinja.palletsprojects.com/) - a HTTP templating language for Python.
+9. [jQuery](https://jquery.com/) - used to enable Materialize dynamic effects such as the navbar.
+10. [Heroku](https://dashboard.heroku.com/) - hosts the deployed project.
+11. [PyMongo](https://pymongo.readthedocs.io/) - Python distribution containing tools for working with MongoDB.
+12. [MongoDB Atlas](https://www.mongodb.com/) - used to host the project's NoSQL databases.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+[Back to top](#isadora's-kitchen)
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## Testing
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+### Code Validation
+The W3C Markup and CSS Validators, JSHint JavaScript Validator and PEP8 Validator were used to validate the code to ensure the project was free from errors.
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+- [W3C Markup Validator Results]()
+- [W3C CSS Validator Results]()
+- [JSHint Validator Results]()
+- [PEP8 Compliance Results]()
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+### Testing User Stories from UX Section
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+  - First Time Visitor Goals
+    
+    - a. As a first time visitor, I want to understand the site's purpose so I can determine if it is relevant to what I need.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+  - Returning Visitor Goals
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+  - Frequent Visitor Goals
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+### Further Testing
+The site has been tested on Chrome, Edge, Firefox and DuckDuckGo on mobile, desktop and tablet devices of varying screen widths.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+Pages all link to each other without issue, and external links open a new tab as expected.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+Family also assisted in testing the site, and reported no major issues.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+### Known Bugs
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+### Fixed Bugs
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+[Back to top](#isadora's-kitchen)
 
-------
+## Deployment
 
-## FAQ about the uptime script
+### Local Deployment
 
-**Why have you added this script?**
+Before you are able to deploy and run this application locally, you must have the following installed on your system:
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+- [Python3](https://www.python.org/downloads) to run the application.
+- [PIP](https://pip.pypa.io/en/stable/installing) to install all app requirements.
+- An IDE of your choice, such as [Microsoft Visual Studio Code](https://code.visualstudio.com).
+- [GIT](https://www.atlassian.com/git/tutorials/install-git) for cloning and version control.
+- [MongoDB CLI](https://www.mongodb.com) to develop your own database either locally or remotely on MongoDB Atlas.
 
-**How will this affect me?**
+Next, perform the following steps:
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+Clone this GitHub repository by either clicking the green *Clone or download* button and downloading the project as a zip-file (remember to unzip it first), or by entering the following into the Git CLI terminal:
+    - `git clone https://github.com/carwynteifion/Milestone-Project-3-BD.git`.
+- Navigate to the correct file location after unpacking the files.
+    - `cd <path to folder>`
+- Create a `env.py` file containing your *MONGO_URI* and *SECRET_KEY* environmental variables.
+- Install all requirements from the [requirements.txt](https://github.com/carwynteifion/Milestone-Project-3-BD/blob/main/requirements.txt) file using this command:
+    - `pip3 -r requirements.txt`
+- Sign up for a free account on [MongoDB](https://www.mongodb.com) and create a new Database called **milestone_project_3**. The *Collections* in that database should be as follows:
 
 ```
-pkill uptime.sh
-rm .vscode/uptime.sh
+DATABASE DETAILS HERE
 ```
 
-**Anything more?**
+- At the terminal prompt, type ```python3 app.py```. This should now start running a development server which you can open from your IDE's remote explorer.
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+### Remote Deployment
 
----
+To implement this project on Heroku, the following must be completed:
 
-Happy coding!
+1. Create a **requirements.txt** file so Heroku can install the required dependencies to run the app.
+    - `pip3 freeze --local > requirements.txt`
+    - My file can be found [here](https://github.com/carwynteifion/Milestone-Project-3-BD/blob/main/requirements.txt).
+2. Create a **Procfile** to tell Heroku what type of application is being deployed, and how to run it.
+    - `echo web: python run.py > Procfile`
+    - My file can be found [here](https://github.com/carwynteifion/Milestone-Project-3-BD/blob/main/Procfile).
+3. Sign up for or log into your Heroku account, create your project app, and click the **Deploy** tab. Select *Connect GitHub* as the Deployment Method, and select *Enable Automatic Deployment*.
+4. In the Heroku **Settings** tab, click on the *Reveal Config Vars* button to configure environmental variables as follows:
+    - **IP** : `0.0.0.0`
+    - **PORT** : `8080`
+    - **MONGO_URI** : `<link to your Mongo DB>`
+    - **SECRET_KEY** : `<your own secret key>`
+5. The app will now be deployed and built by Heroku and will be ready to run.
+
+[Back to top](#isadora's-kitchen)
+
+## Credits
+
+### Code
+
+### Content
+
+All code was written by the developer.
+
+### Media
+
+
+
+### Acknowledgements
+
+My mentor, Chris, for once again being a huge help while I was putting this together.
+
+My fiancee, Isadora, and her mum, Kay, for UX/bug testing this site.
+
+[Back to top](#isadora's-kitchen)

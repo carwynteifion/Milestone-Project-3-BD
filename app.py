@@ -167,7 +167,8 @@ def view_recipe(recipe_id):
     """
     recipe_name = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
     created_by = coll_users.find_one(
-        {"_id": ObjectId(recipe_name.get("createdBy"))})["username"]
+         {"_id": ObjectId(recipe_name.get("createdBy"))})["username"]
+    print(created_by)
     return render_template(
         "viewrecipe.html",
         recipe=recipe_name,
@@ -243,7 +244,8 @@ def edit_recipe(recipe_id):
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     """
-    Deletes recipe from database
+    Deletes recipe from database and removes recipe
+    entry from user recipe list.
     """
     if "user" in session:
         recipe_to_delete = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
