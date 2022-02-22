@@ -35,6 +35,17 @@ def home():
     return render_template("home.html", recipes=recipes)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    """
+    Searches database for query typed in
+    by user.
+    """
+    query = request.form.get("query")
+    recipes = list(coll_recipes.find({"$text": {"$search": query}}))
+    return render_template("home.html", recipes=recipes)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """
