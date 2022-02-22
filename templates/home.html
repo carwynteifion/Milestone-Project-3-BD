@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row card-panel grey lighten-5">
+<div class="row card-panel grey lighten-5 center-align">
+    <h6>Welcome to Isadora's Kitchen! Start by searching for a recipe or by browsing below.</h6>
     <form action="{{ url_for('search') }}" method="post" class="col s12">
         <div class="row valign-wrapper center-align">
             <div class="input-field col s12 m8">
