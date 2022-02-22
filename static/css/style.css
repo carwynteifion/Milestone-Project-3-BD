@@ -48,3 +48,15 @@ main {
     color: black;
     border-radius: 5px;
 }
+
+@media only screen and (max-width: 436px) {
+    a.brand-logo {
+        font-size: 1.5rem;
+    }    
+}
+
+@media only screen and (min-width: 993px) {
+    a.brand-logo {
+        padding-left: 20px;
+    }    
+}
