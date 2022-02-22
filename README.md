@@ -175,9 +175,9 @@ All code was written by the developer.
 
 ### Media
 
-[Background image](https://www.teahub.io/down/JJmTow_spice-indian-spices-hd/)
-Food images taken from [BBC Good Food](https://www.bbcgoodfood.com)
-[Default food image](https://www.hiclipart.com/free-transparent-background-png-clipart-mhidw/download)
+- [Background image](https://www.teahub.io/down/JJmTow_spice-indian-spices-hd/)
+- Food images taken from [BBC Good Food](https://www.bbcgoodfood.com)
+- [Default food image](https://www.hiclipart.com/free-transparent-background-png-clipart-mhidw/download)
 
 ### Acknowledgements
 

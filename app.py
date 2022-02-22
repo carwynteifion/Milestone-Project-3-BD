@@ -88,8 +88,7 @@ def login():
     if request.method == "POST":
         # check if username exists in db
         existing_user = coll_users.find_one(
-            {"username": request.form.get("username").lower()})
-        
+            {"username": request.form.get("username").lower()})       
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
@@ -103,12 +102,10 @@ def login():
                 # invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
-
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
-
     return render_template("login.html")
 
 
