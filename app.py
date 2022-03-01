@@ -160,7 +160,7 @@ def add_recipe():
             return redirect(
                 url_for("view_recipe", recipe_id=insert_recipe.inserted_id))
 
-        cuisines = coll_cuisines.find().sort("cuisineName", 1)
+        cuisines = list(coll_cuisines.find())
         return render_template("addrecipe.html", cuisines=cuisines)
 
     else:
