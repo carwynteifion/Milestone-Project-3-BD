@@ -19,7 +19,7 @@
             <div class="input-field col s12">
                 <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
                 <select id="cuisine" name="cuisine" class="validate" required>
-                    <option value="" disabled selected>Choose Cuisine</option>
+                    <option value="" disabled selected>{{ recipe_to_edit.cuisine }}</option>
                     {% for cuisine in cuisines %}
                         {% for country in cuisine.cuisineName %}
                             <option value="{{ country }}">{{ country }}</option>
@@ -35,7 +35,7 @@
                 <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
                 <textarea id="recipe_description" name="recipe_description" minlength="5"
                     maxlength="300" class="materialize-textarea validate"
-                    value="{{ recipe_to_edit.recipeDescription }}" required></textarea>
+                    required>{{ recipe_to_edit.recipeDescription }}</textarea>
                 <label for="recipe_description">Recipe Description</label>
             </div>
         </div>
@@ -46,9 +46,9 @@
                 <textarea id="ingredients" name="ingredients" minlength="5"
                     maxlength="1000" class="materialize-textarea validate"
                     placeholder="Use new line for each ingredient" required>
-                    {% for ingredient in recipe_to_edit.ingredients -%}
-                    {{ ingredient }}
-                    {% endfor -%}
+{%- for ingredient in recipe_to_edit.ingredients %}
+{{ ingredient }}
+{%- endfor %}
                 </textarea>
                 <label for="ingredients">Ingredients</label>
             </div>
@@ -58,11 +58,12 @@
             <div class="input-field col s12">
                 <i class="fas fa-blender prefix light-blue-text text-darken-4"></i>
                 <textarea id="method" name="method" minlength="5"
-                    maxlength="500" class="materialize-textarea validate"
+                    maxlength="1000" class="materialize-textarea validate"
                     placeholder="Use new line for each step" required>
-                    {% for step in recipe_to_edit.method -%}
-                    {{ step }}
-                    {% endfor -%}</textarea>
+{%- for step in recipe_to_edit.method %}
+{{ step }}
+{%- endfor %}
+                </textarea>
                 <label for="method">Method</label>
             </div>
         </div>
@@ -72,8 +73,7 @@
                 <i class="fas fa-link prefix light-blue-text text-darken-4"></i>
                 <textarea id="img_url" name="img_url" minlength="5"
                     maxlength="500" class="materialize-textarea validate"
-                    value="{{ recipe_to_edit.imgUrl }}"
-                    placeholder="Paste your image's URL here">
+                    placeholder="Paste your image's URL here">{{ recipe_to_edit.imgUrl }}
                 </textarea>
                 <label for="img_url">Image URL (optional)</label>
             </div>
