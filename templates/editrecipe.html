@@ -21,7 +21,9 @@
                 <select id="cuisine" name="cuisine" class="validate" required>
                     <option value="" disabled selected>Choose Cuisine</option>
                     {% for cuisine in cuisines %}
-                        <option value="{{ cuisine.cuisineName }}">{{ cuisine.cuisineName }}</option>
+                        {% for country in cuisine.cuisineName %}
+                            <option value="{{ country }}">{{ country }}</option>
+                        {% endfor %}
                     {% endfor %}
                 </select>
                 <label for="cuisine">Cuisine</label>
