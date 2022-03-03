@@ -19,7 +19,8 @@
             <div class="input-field col s12">
                 <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
                 <select id="cuisine" name="cuisine" class="validate" required>
-                    <option value="" disabled selected>{{ recipe_to_edit.cuisine }}</option>
+                    <option value="{{ recipe_to_edit.cuisine }}"
+                    selected>{{ recipe_to_edit.cuisine }}</option>
                     {% for cuisine in cuisines %}
                         {% for country in cuisine.cuisineName %}
                             <option value="{{ country }}">{{ country }}</option>
