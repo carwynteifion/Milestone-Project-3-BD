@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row card-panel grey lighten-5">
+<div class="row card-panel grey lighten-5" id="add-recipe-card">
     <h3 class="light-blue-text text-darken-4 center-align">Add Recipe</h3>
     <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">  
         <!-- recipe name -->
@@ -43,7 +43,7 @@
                 <i class="fas fa-utensils prefix light-blue-text text-darken-4"></i>
                 <textarea id="ingredients" name="ingredients" minlength="5"
                     maxlength="500" class="materialize-textarea validate" required></textarea>
-                <label for="ingredients">Ingredients (use new line for each ingredient)</label>
+                <label for="ingredients">Ingredients (use new line per ingredient)</label>
             </div>
         </div>
         <!-- Method -->
@@ -52,7 +52,7 @@
                 <i class="fas fa-blender prefix light-blue-text text-darken-4"></i>
                 <textarea id="method" name="method" minlength="5"
                     maxlength="1000" class="materialize-textarea validate" required></textarea>
-                <label for="method">Method (use new line for each step)</label>
+                <label for="method">Method (use new line per step)</label>
             </div>
         </div>
         <!-- Paste Image URL -->
@@ -61,7 +61,7 @@
                 <i class="fas fa-link prefix light-blue-text text-darken-4"></i>
                 <textarea id="img_url" name="img_url" minlength="5"
                     maxlength="500" class="materialize-textarea validate"></textarea>
-                <label for="img_url">Paste the URL to your recipe's image here (optional)</label>
+                <label for="img_url">Paste image URL here (optional)</label>
             </div>
         </div>
         <!-- submit button -->
