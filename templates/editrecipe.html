@@ -14,8 +14,8 @@
                 <label for="recipe_name">Recipe Name</label>
             </div>
         </div>
+        <!-- cuisine selection -->
         <div class="row">
-            <!-- cuisine selection -->
             <div class="input-field col s12">
                 <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
                 <select id="cuisine" name="cuisine" class="validate" required>
@@ -48,7 +48,7 @@
                     placeholder="Use new line for each ingredient" required>
 {%- for ingredient in recipe_to_edit.ingredients %}
 {{ ingredient }}
-{%- endfor %}
+{%- endfor -%}
                 </textarea>
                 <label for="ingredients">Ingredients</label>
             </div>
@@ -62,7 +62,7 @@
                     placeholder="Use new line for each step" required>
 {%- for step in recipe_to_edit.method %}
 {{ step }}
-{%- endfor %}
+{%- endfor -%}
                 </textarea>
                 <label for="method">Method</label>
             </div>
@@ -73,8 +73,7 @@
                 <i class="fas fa-link prefix light-blue-text text-darken-4"></i>
                 <textarea id="img_url" name="img_url" minlength="5"
                     maxlength="500" class="materialize-textarea validate"
-                    placeholder="Paste your image's URL here">{{ recipe_to_edit.imgUrl }}
-                </textarea>
+                    placeholder="Paste your image's URL here">{{ recipe_to_edit.imgUrl }}</textarea>
                 <label for="img_url">Image URL (optional)</label>
             </div>
         </div>

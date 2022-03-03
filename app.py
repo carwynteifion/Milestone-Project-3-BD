@@ -160,7 +160,7 @@ def add_recipe():
             return redirect(
                 url_for("view_recipe", recipe_id=insert_recipe.inserted_id))
 
-        cuisines = list(coll_cuisines.find())
+        cuisines = list(coll_cuisines.find().sort("cuisineName", 1))
         return render_template("addrecipe.html", cuisines=cuisines)
 
     else:
@@ -176,7 +176,6 @@ def view_recipe(recipe_id):
     recipe_name = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
     created_by = coll_users.find_one(
          {"_id": ObjectId(recipe_name.get("createdBy"))})["username"]
-    print(created_by)
     return render_template(
         "viewrecipe.html",
         recipe=recipe_name,
@@ -224,7 +223,7 @@ def edit_recipe(recipe_id):
                 recipe = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
                 ingredients = request.form.get("ingredients").splitlines()
                 method = request.form.get("method").splitlines()
-                created_by = recipe.get("created_by")
+                created_by = recipe.get("createdBy")
                 submit = {
                     "recipeName": request.form.get("recipe_name"),
                     "cuisine": request.form.get("cuisine"),
@@ -238,7 +237,7 @@ def edit_recipe(recipe_id):
                 flash("Recipe Successfully Updated")
 
             recipe = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
-            cuisines = coll_cuisines.find().sort("cuisineName", 1)
+            cuisines = list(coll_cuisines.find().sort("cuisineName", 1))
             return render_template(
                 "viewrecipe.html", recipe=recipe, cuisines=cuisines)
         else:
