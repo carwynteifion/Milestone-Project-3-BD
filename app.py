@@ -133,7 +133,10 @@ def logout():
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     """
-    Adds recipe to database
+    Adds recipe to DB, then adds the
+    recipe to user's recipe list in DB
+    before redirecting to recipe's View
+    Recipe page.
     """
     if "user" in session:
         created_by = coll_users.find_one({"username": session["user"]})["_id"]
@@ -171,7 +174,8 @@ def add_recipe():
 @app.route("/view_recipe/<recipe_id>")
 def view_recipe(recipe_id):
     """
-    View recipe
+    Renders View Recipe template based on
+    recipe clicked on from home page.
     """
     recipe_name = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
     created_by = coll_users.find_one(
@@ -185,7 +189,7 @@ def view_recipe(recipe_id):
 @app.route("/update_recipe_details/<recipe_id>")
 def update_recipe_details(recipe_id):
     """
-    Populates Edit Recipe page with current recipe
+    Populates Edit Recipe page with selected recipe
     details from database
     """
     if "user" in session:
@@ -275,7 +279,8 @@ def delete_recipe(recipe_id):
 @app.route("/my_recipes/<username>")
 def my_recipes(username):
     """
-    Renders user's own recipes.
+    Renders My Recipes template, displaying
+    user's own recipes.
     """
     if "user" in session:
         current_user = coll_users.find_one({"username": session["user"]})["_id"]
