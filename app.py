@@ -63,12 +63,14 @@ def register():
             return redirect(url_for("register"))
 
         # check username length
-        if len(request.form.get("username")) < 5 or len(request.form.get("username")) > 20:
+        if len(request.form.get("username")) < 5 or len(
+                request.form.get("username")) > 20:
             flash("Usernames must be between 5 and 20 characters long")
             return redirect(url_for("register"))
-        
+
         # check password length
-        if len(request.form.get("password")) < 8 or len(request.form.get("password")) > 20:
+        if len(request.form.get("password")) < 8 or len(
+                request.form.get("password")) > 20:
             flash("Passwords must be between 8 and 20 characters long")
             return redirect(url_for("register"))
 
@@ -99,11 +101,12 @@ def login():
     if request.method == "POST":
         # check if username exists in db
         existing_user = coll_users.find_one(
-            {"username": request.form.get("username").lower()})       
+            {"username": request.form.get("username").lower()})
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
+                        existing_user["password"],
+                        request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(
                         request.form.get("username")))
@@ -213,7 +216,6 @@ def update_recipe_details(recipe_id):
         return redirect(url_for("login"))
 
 
-
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     """
@@ -231,7 +233,8 @@ def edit_recipe(recipe_id):
                 submit = {
                     "recipeName": request.form.get("recipe_name"),
                     "cuisine": request.form.get("cuisine"),
-                    "recipeDescription": request.form.get("recipe_description"),
+                    "recipeDescription": request.form.get(
+                        "recipe_description"),
                     "ingredients": ingredients,
                     "method": method,
                     "createdBy": created_by,
@@ -262,7 +265,8 @@ def delete_recipe(recipe_id):
         recipe_to_delete = coll_recipes.find_one({"_id": ObjectId(recipe_id)})
         user = coll_users.find_one({"username": session["user"]})["_id"]
         if user == recipe_to_delete.get("createdBy"):
-            created_by = coll_recipes.find_one({"_id": ObjectId(recipe_id)})["createdBy"]
+            created_by = coll_recipes.find_one(
+                {"_id": ObjectId(recipe_id)})["createdBy"]
             coll_recipes.delete_one({"_id": ObjectId(recipe_id)})
             coll_users.update_one(
                 {"_id": ObjectId(created_by)},
@@ -283,7 +287,8 @@ def my_recipes(username):
     user's own recipes.
     """
     if "user" in session:
-        current_user = coll_users.find_one({"username": session["user"]})["_id"]
+        current_user = coll_users.find_one(
+            {"username": session["user"]})["_id"]
         user_id = coll_users.find_one({"username": username})["_id"]
         if current_user == user_id:
             user_recipes = coll_users.find_one(
@@ -301,5 +306,4 @@ def my_recipes(username):
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
-            port=int(os.environ.get("PORT")),
-            debug=True)
+            port=int(os.environ.get("PORT")))

@@ -111,10 +111,10 @@ If I had more time, I would have liked to have added the following:
 ### Code Validation
 The W3C Markup and CSS Validators, JSHint JavaScript Validator and PEP8 Validator were used to validate the code to ensure the project was free from errors.
 
-- [W3C Markup Validator Results]()
-- [W3C CSS Validator Results]()
-- [JSHint Validator Results]()
-- [PEP8 Compliance Results]()
+- [W3C Markup Validator](https://validator.w3.org/) Results - No errors. One warning regarding no headings within sections appearing on all pages. This is likely an issue with Jinja templating.
+- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) Results - No issues.
+- [JSHint Validator](https://jshint.com/) Results - No issues.
+- [PEP8 Compliance Results](https://pep8online.com/checkresult) - No issues.
 
 ### Testing User Stories from UX Section
 
