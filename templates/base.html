@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +17,7 @@
 
     <title>Isadora's Kitchen</title>
 </head>
+
 <body>
     <header>
         <!-- top navbar -->
@@ -28,29 +30,31 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('home') }}">Home</a></li>
                         {% if session.user %}
-                            <li><a href="{{ url_for('my_recipes', username = session.user) }}">My Recipes</a></li>
-                            <li><a href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
-                            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                        <li><a href="{{ url_for('my_recipes', username = session.user) }}">My Recipes</a></li>
+                        <li><a href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
+                        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                         {% else %}
-                            <li><a href="{{ url_for('login') }}">Log In</a></li>
-                            <li><a href="{{ url_for('register') }}">Register</a></li> 
-                        {% endif %}             
+                        <li><a href="{{ url_for('login') }}">Log In</a></li>
+                        <li><a href="{{ url_for('register') }}">Register</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </nav>
         </div>
-        
+
         <!-- mobile sidenav -->
         <ul class="sidenav" id="mobile-demo">
-            <li><h4 class="center-align">Isadora's Kitchen</h4></li>
+            <li>
+                <h4 class="center-align">Isadora's Kitchen</h4>
+            </li>
             <li><a href="{{ url_for('home') }}">Home</a></li>
             {% if session.user %}
-                <li><a href="{{ url_for('my_recipes', username = session.user) }}">My Recipes</a></li>
-                <li><a href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
-                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            <li><a href="{{ url_for('my_recipes', username = session.user) }}">My Recipes</a></li>
+            <li><a href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
-                <li><a href="{{ url_for('login') }}">Log In</a></li>
-                <li><a href="{{ url_for('register') }}">Register</a></li> 
+            <li><a href="{{ url_for('login') }}">Log In</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
         </ul>
     </header>
@@ -58,13 +62,13 @@
     <section>
         <!-- flash messages -->
         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="row flashes">
-                        <h4 class="center-align title">{{ message }}</h4>
-                    </div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h4 class="center-align title">{{ message }}</h4>
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
     </section>
 
@@ -82,7 +86,7 @@
                     <a href="https://www.facebook.com/" aria-label="Facebook" target="_blank" rel="noopener">
                         <i class="fab fa-facebook-square"></i>
                     </a>
-                    <a href="https://www.twitter.com/" aria-label="Twitter"target="_blank" rel="noopener">
+                    <a href="https://www.twitter.com/" aria-label="Twitter" target="_blank" rel="noopener">
                         <i class="fab fa-twitter-square"></i>
                     </a>
                     <a href="https://www.instagram.com/" aria-label="Instagram" target="_blank" rel="noopener">
@@ -104,4 +108,5 @@
     {% block scripts %}
     {% endblock %}
 </body>
+
 </html>
