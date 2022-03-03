@@ -1,9 +1,9 @@
 # Isadora's Kitchen
 Link to the live project here: https://milestone-project-3-bd.herokuapp.com/
 
-This is a website for Isadora's Kitchen, designed as a responsive site for people to create, read, update and delete their own cooking recipes, as well as view those created by other users.
+This is a website for Isadora's Kitchen, designed as a responsive site for people to create, read, update and delete their own cooking recipes, as well as view those created by other users. I conceived this site as my fiancee loves to cook and wanted somewhere to share her recipes, and have other users share theirs too.
 
-<h2 align="center"><img src="assets/img/responsive.png"></h2> - REMEMBER TO ADD THIS
+<h2 align="center"><img src="static/img/responsive.PNG"></h2>
 
 # Table of Contents
 1. [User Experience](#user-experience)
@@ -41,15 +41,30 @@ This is a website for Isadora's Kitchen, designed as a responsive site for peopl
   - First Time Visitor Goals
     
     a. As a first time visitor, I want to understand the site's purpose so I can determine if it is relevant to what I need.
+    
+    b. As a first time visitor, I want to create an account so I can share recipes to the site.
+
+    c. As a first time visitor, I want to explore other recipes.
 
   - Returning Visitor Goals
 
+    a. As a returning visitor, I want to be able to log in quickly and easily.
+
+    b. As a returning visitor, I want to edit my existing recipes.
+
+    c. As a returning visitor, I want to delete a recipe I have previously added to the site.
+
   - Frequent Visitor Goals
+
+    a. As a frequent visitor, I want to view all the recipes I have uploaded.
 
 - Design
   - Colour Scheme
+    - The colour scheme is yellow for the header and footer with white text, with dark blue text for titles and form labels. Buttons are green for confirming adding or editing a recipe, red for cancelling or deleting and yellow for the edit button on a recipe's View page. The bright colours are meant to evoke the brightly coloured spices used in Indian cooking, mainly turmeric which is yellow.
   - Typography
+    - The font throughout is the standard Materialize font, Segoe UI, which is presentable and clear.
   - Imagery
+    - The background image is of various spices, tying in with the food theme. In the same vein, the default image if an image is not uploaded for a new recipe entry is of a food icon.
 
 - Wireframes - can be viewed here - WIREFRAME LINK
 
@@ -57,6 +72,14 @@ This is a website for Isadora's Kitchen, designed as a responsive site for peopl
 - Responsive on mobile, tablet and desktop sizes
 - Interactive elements
 - CRUD functionality
+- Tailored view of user's own recipes
+- Registration/Login functionality
+
+If I had more time, I would have liked to have added the following:
+- A favourites function so users could favourite their recipes for easy access
+- The ability to delete an account and optionally its associated recipes
+- The ability for a user to change their password when logged in
+- More defensive programming overall, to prevent accidental deleting of recipes etc.
 
 [Back to top](#isadora's-kitchen)
 
@@ -182,6 +205,8 @@ All code was written by the developer.
 ### Acknowledgements
 
 My mentor, Chris, for once again being a huge help while I was putting this together.
+
+Scott, Rebecca and James from Tutor Support for their excellent ability in nudging me in the right direction towards figuring out solutions for myself.
 
 My fiancee, Isadora, and her mum, Kay, for UX/bug testing this site.
 
