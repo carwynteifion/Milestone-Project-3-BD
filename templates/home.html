@@ -2,15 +2,17 @@
 {% block content %}
 
 <div class="row card-panel grey lighten-5 center-align">
-    <h6>Welcome to Isadora's Kitchen! Start by searching for a recipe or by browsing below.</h6>
+    <h6>Welcome to Isadora's Kitchen! Search for a recipe or browse below.</h6>
     <form action="{{ url_for('search') }}" method="post" class="col s12">
         <div class="row valign-wrapper center-align">
-            <div class="input-field col s12 m8">
+            <div class="input-field col s12">
                 <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
                 <input type="text" name="query" id="query" minlength="3" class="validate" required>
                 <label for="query">Search Recipes</label>
             </div>
-            <div class="col s12 m4">
+        </div>
+        <div class="row valign-wrapper center-align">
+            <div class="col s12">
                 <a href="{{ url_for('home') }}" class="red btn text-shadow">Reset</a>
                 <button type="submit" class="green darken-1 btn text-shadow">
                     <i class="fas fa-search left"></i>Search
