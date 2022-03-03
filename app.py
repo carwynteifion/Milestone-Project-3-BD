@@ -281,7 +281,11 @@ def my_recipes(username):
         current_user = coll_users.find_one({"username": session["user"]})["_id"]
         user_id = coll_users.find_one({"username": username})["_id"]
         if current_user == user_id:
-            return render_template("myrecipes.html")              
+            user_recipes = coll_users.find_one(
+                {"username": username})["recipes"]
+            recipes = coll_recipes.find(
+                {"_id": {"$in": user_recipes}})
+            return render_template("myrecipes.html", recipes=recipes)
         else:
             flash("You do not have access to this page")
             return redirect(url_for("home"))

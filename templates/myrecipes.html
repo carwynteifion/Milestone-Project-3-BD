@@ -4,7 +4,9 @@
 <h3 class="center-align title">My Recipes</h3>
 <div class="row">
     {% for recipe in recipes %}
-        {% include "partials/_cards.html" %}
+    {% include "partials/_cards.html" %}
+    {% else %}
+    <h5>Nothing here...yet! Start adding recipes and they'll show here.</h5>
     {% endfor %}
 </div>
 
