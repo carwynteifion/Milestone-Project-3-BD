@@ -66,7 +66,7 @@ This is a website for Isadora's Kitchen, designed as a responsive site for peopl
   - Imagery
     - The background image is of various spices, tying in with the food theme. In the same vein, the default image if an image is not uploaded for a new recipe entry is of a food icon.
 
-- Wireframes - can be viewed here - WIREFRAME LINK
+- [Wireframes can be viewed here]()
 
 ## Features
 - Responsive on mobile, tablet and desktop sizes
@@ -115,7 +115,7 @@ The W3C Markup and CSS Validators, JSHint JavaScript Validator and PEP8 Validato
 - [W3C Markup Validator](https://validator.w3.org/) Results - No errors. One warning regarding no headings within sections appearing on all pages. This is likely an issue with Jinja templating.
 - [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) Results - No issues.
 - [JSHint Validator](https://jshint.com/) Results - No issues.
-- [PEP8 Compliance Results](https://pep8online.com/checkresult) - No issues.
+- [PEP8 Compliance](https://pep8online.com/checkresult) - No issues.
 
 ### Testing User Stories from UX Section
 
@@ -123,47 +123,58 @@ The W3C Markup and CSS Validators, JSHint JavaScript Validator and PEP8 Validato
     
     a. As a first time visitor, I want to understand the site's purpose so I can determine if it is relevant to what I need.
       
-      i. The site's home page invites users to search for a recipe or browse the page. The user can click on a recipe's View Recipe link to view more of its details.
+      - i. The site's home page invites users to search for a recipe or browse the page. The user can click on a recipe's View Recipe link to view more of its details.
       
-      ii. The navbar clearly shows the site's name, identifying it as being based around making food.
+      - ii. The navbar clearly shows the site's name, identifying it as being based around making food.
+      <h2 align="center"><img src="static/img/screenshot1.PNG"></h2>
     
     b. As a first time visitor, I want to create an account so I can share recipes to the site.
 
-      i. When not logged in, the navbar has a registration button on the right hand side on devices with larger screen widths, and in the hamburger menu on smaller-screened devices.
+      - i. When not logged in, the navbar has a registration button that the user can click to create an account.
       
-      ii. Registration is quick and easy, only requiring a username and password within the provided limitations to sign up.
+      - ii. Registration is quick and easy, only requiring a username and password within the provided limitations to sign up.
+      <h2 align="center"><img src="static/img/screenshot2.PNG"></h2>
 
-      iii. Users can start adding recipes as soon as they have signed up using the Add New Recipe option which appears in the navbar when logged in.
+      - iii. Users can start adding recipes as soon as they have signed up using the Add New Recipe option which appears in the navbar when logged in.
+      <h2 align="center"><img src="static/img/screenshot3.PNG"></h2>
 
-      iv. When finished, the user can log out using the Log Out button on the navbar.
+      - iv. On the Add Recipe page, users can fill in the information about the recipe, and add an image URL if they want. If they do not add one, a default image is used instead.
+      <h2 align="center"><img src="static/img/screenshot4.PNG"></h2>
+
+      - v. When finished, the user can log out using the Log Out button on the navbar.
 
     c. As a first time visitor, I want to explore other recipes.
 
-      i. Scrolling down the home page will show more recipes to the user. Clicking on each of their View Recipe options will show each recipe in further detail.
+      - i. Scrolling down the home page will show more recipes to the user. Clicking on each of their View Recipe options will show each recipe in further detail.
+      <h2 align="center"><img src="static/img/screenshot5.PNG"></h2>
 
-      ii. Users can also search for recipes using the search bar on the home page.
+      - ii. Users can also search for recipes using the search bar on the home page.
 
   - Returning Visitor Goals
 
     a. As a returning visitor, I want to be able to log in quickly and easily.
 
-      i. When not logged in, the navbar displays a login button. This takes the user to a form page where they enter their username and password to log in.
+      - i. When not logged in, the navbar displays a login button. This takes the user to a form page where they enter their username and password to log in.
+      <h2 align="center"><img src="static/img/screenshot6.PNG"></h2>
 
     b. As a returning visitor, I want to edit my existing recipes.
 
-      i. When logged in, users can click on the Edit Recipe button which appears at the bottom of any recipe's View page. If the logged in user is also the creator of the recipe, the site will allow them to edit the entry.
+      - i. When logged in, users can click on the Edit Recipe button which appears at the bottom of any recipe's View page. If the logged in user is also the creator of the recipe, the site will allow them to edit the entry.
+      <h2 align="center"><img src="static/img/screenshot7.PNG"></h2>
 
-      ii. The user will be presented with a pre-populated form where they can edit all the data they have entered previously, and resubmit or cancel at the bottom of the form.
+      - ii. The user will be presented with a pre-populated form where they can edit all the data they have entered previously, and resubmit or cancel at the bottom of the form.
+      <h2 align="center"><img src="static/img/screenshot8.PNG"></h2>
 
     c. As a returning visitor, I want to delete a recipe I have previously added to the site.
 
-      i. When logged in, users can click on the Delete Recipe button which appears at the bottom of any recipe's View page. If the logged in user is also the creator of the recipe, the site will allow them to delete the entry.
+      - i. When logged in, users can click on the Delete Recipe button which appears at the bottom of any recipe's View page. If the logged in user is also the creator of the recipe, the site will allow them to delete the entry.
 
   - Frequent Visitor Goals
 
     a. As a frequent visitor, I want to view all the recipes I have uploaded.
 
-      i. When logged in, the My Recipes option appears in the navbar where the user can see all recipes uploaded by themselves.
+      - i. When logged in, the My Recipes option appears in the navbar where the user can see all recipes uploaded by themselves.
+      <h2 align="center"><img src="static/img/screenshot9.PNG"></h2>
 
 ### Further Testing
 The site has been tested on Chrome, Edge, Firefox and DuckDuckGo on mobile, desktop and tablet devices of varying screen widths.
@@ -266,6 +277,7 @@ All code was written by the developer.
 - [Background image](https://www.teahub.io/down/JJmTow_spice-indian-spices-hd/)
 - Food images taken from [BBC Good Food](https://www.bbcgoodfood.com)
 - [Default food image](https://www.hiclipart.com/free-transparent-background-png-clipart-mhidw/download)
+- Favicon designed by my fiancee in [Canva](https://www.canva.com)
 
 ### Acknowledgements
 
