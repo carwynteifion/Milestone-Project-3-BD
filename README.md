@@ -66,7 +66,7 @@ This is a website for Isadora's Kitchen, designed as a responsive site for peopl
   - Imagery
     - The background image is of various spices, tying in with the food theme. In the same vein, the default image if an image is not uploaded for a new recipe entry is of a food icon.
 
-- [Wireframes can be viewed here]()
+- [Wireframes can be viewed here](https://github.com/carwynteifion/Milestone-Project-3-BD/tree/main/static/img/wireframes)
 
 ## Features
 - Responsive on mobile, tablet and desktop sizes
