@@ -120,11 +120,23 @@ The W3C Markup and CSS Validators, JSHint JavaScript Validator and PEP8 Validato
 
   - First Time Visitor Goals
     
-    - a. As a first time visitor, I want to understand the site's purpose so I can determine if it is relevant to what I need.
+    a. As a first time visitor, I want to understand the site's purpose so I can determine if it is relevant to what I need.
+    
+    b. As a first time visitor, I want to create an account so I can share recipes to the site.
+
+    c. As a first time visitor, I want to explore other recipes.
 
   - Returning Visitor Goals
 
+    a. As a returning visitor, I want to be able to log in quickly and easily.
+
+    b. As a returning visitor, I want to edit my existing recipes.
+
+    c. As a returning visitor, I want to delete a recipe I have previously added to the site.
+
   - Frequent Visitor Goals
+
+    a. As a frequent visitor, I want to view all the recipes I have uploaded.
 
 ### Further Testing
 The site has been tested on Chrome, Edge, Firefox and DuckDuckGo on mobile, desktop and tablet devices of varying screen widths.
@@ -134,8 +146,16 @@ Pages all link to each other without issue, and external links open a new tab as
 Family also assisted in testing the site, and reported no major issues.
 
 ### Known Bugs
+- Materialize's form placeholder text overflows to a new line on smaller resolutions.
 
 ### Fixed Bugs
+- Search initially was not working. This was fixed by adding a search index in MongoDB.
+- View Recipe was initially displaying the recipe creator's ID instead of their username - this was fixed by changing the database target on line 185 in app.py.
+- Navbar title was wrapping onto the next line on smaller resolutions. This was fixed with CSS media queries.
+- The Cuisine dropdown menu on Add Recipe and Edit Recipe was initially showing the entire cuisine array as one option. This was fixed by targeting the array in app.py (lines 169 & 247) and making a nested for loop in addrecipe.html (line 22) and editrecipe.html (line 24).
+- Data from the database returned unwanted whitespace in some Edit Recipe form fields and appeared to be not pulling through at all on imgUrl and description fields - this was fixed by both changing the fields' values into textarea content (eg. editrecipe.html, line 39), and removing indents from Jinja for loops in editrecipe.html (lines 50-52, 64-66)
+- createdBy became a null value when editing a recipe, fixed by checking reference is createdBy instead of created_by.
+- In Edit Recipe, the cuisine dropdown caused update button to not work if not interacted with due to form validation issues - fixed by adding the default value to selected option and removing disabled attribute (editrecipe.html, line 22).
 
 [Back to top](#isadora's-kitchen)
 
@@ -163,7 +183,25 @@ Clone this GitHub repository by either clicking the green *Clone or download* bu
 - Sign up for a free account on [MongoDB](https://www.mongodb.com) and create a new Database called **milestone_project_3**. The *Collections* in that database should be as follows:
 
 ```
-DATABASE DETAILS HERE
+cuisines
+_id: <ObjectId>
+cuisineType: <Array>
+
+recipes
+_id: <ObjectId>
+recipeName: <string>
+cuisine: <string>
+recipeDescription: <string>
+ingredients: <Array>
+method: <Array>
+createdBy: <ObjectId>
+imgUrl: <string>
+
+users
+_id: <ObjectId>
+username: <string>
+password: <string>
+recipes: <Array>
 ```
 
 - At the terminal prompt, type ```python3 app.py```. This should now start running a development server which you can open from your IDE's remote explorer.

@@ -78,8 +78,7 @@ def register():
         user = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
-            "recipes": [],
-            "favourites": []
+            "recipes": []
         }
         coll_users.insert_one(user)
 
