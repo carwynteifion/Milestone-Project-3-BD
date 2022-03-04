@@ -80,6 +80,7 @@ If I had more time, I would have liked to have added the following:
 - The ability to delete an account and optionally its associated recipes
 - The ability for a user to change their password when logged in
 - More defensive programming overall, to prevent accidental deleting of recipes etc.
+- Pagination, to better organise recipe entries on the home page.
 
 [Back to top](#isadora's-kitchen)
 
@@ -121,22 +122,48 @@ The W3C Markup and CSS Validators, JSHint JavaScript Validator and PEP8 Validato
   - First Time Visitor Goals
     
     a. As a first time visitor, I want to understand the site's purpose so I can determine if it is relevant to what I need.
+      
+      i. The site's home page invites users to search for a recipe or browse the page. The user can click on a recipe's View Recipe link to view more of its details.
+      
+      ii. The navbar clearly shows the site's name, identifying it as being based around making food.
     
     b. As a first time visitor, I want to create an account so I can share recipes to the site.
 
+      i. When not logged in, the navbar has a registration button on the right hand side on devices with larger screen widths, and in the hamburger menu on smaller-screened devices.
+      
+      ii. Registration is quick and easy, only requiring a username and password within the provided limitations to sign up.
+
+      iii. Users can start adding recipes as soon as they have signed up using the Add New Recipe option which appears in the navbar when logged in.
+
+      iv. When finished, the user can log out using the Log Out button on the navbar.
+
     c. As a first time visitor, I want to explore other recipes.
+
+      i. Scrolling down the home page will show more recipes to the user. Clicking on each of their View Recipe options will show each recipe in further detail.
+
+      ii. Users can also search for recipes using the search bar on the home page.
 
   - Returning Visitor Goals
 
     a. As a returning visitor, I want to be able to log in quickly and easily.
 
+      i. When not logged in, the navbar displays a login button. This takes the user to a form page where they enter their username and password to log in.
+
     b. As a returning visitor, I want to edit my existing recipes.
 
+      i. When logged in, users can click on the Edit Recipe button which appears at the bottom of any recipe's View page. If the logged in user is also the creator of the recipe, the site will allow them to edit the entry.
+
+      ii. The user will be presented with a pre-populated form where they can edit all the data they have entered previously, and resubmit or cancel at the bottom of the form.
+
     c. As a returning visitor, I want to delete a recipe I have previously added to the site.
+
+      i. When logged in, users can click on the Delete Recipe button which appears at the bottom of any recipe's View page. If the logged in user is also the creator of the recipe, the site will allow them to delete the entry.
 
   - Frequent Visitor Goals
 
     a. As a frequent visitor, I want to view all the recipes I have uploaded.
+
+      i. When logged in, the My Recipes option appears in the navbar where the user can see all recipes uploaded by themselves.
 
 ### Further Testing
 The site has been tested on Chrome, Edge, Firefox and DuckDuckGo on mobile, desktop and tablet devices of varying screen widths.
