@@ -82,7 +82,7 @@ If I had more time, I would have liked to have added the following:
 - More defensive programming overall, to prevent accidental deleting of recipes etc.
 - Pagination, to better organise recipe entries on the home page.
 
-[Back to top](#isadora's-kitchen)
+[Back to top](#isadoras-kitchen)
 
 ## Technologies Used
 ### Languages Used
@@ -105,7 +105,7 @@ If I had more time, I would have liked to have added the following:
 11. [PyMongo](https://pymongo.readthedocs.io/) - Python distribution containing tools for working with MongoDB.
 12. [MongoDB Atlas](https://www.mongodb.com/) - used to host the project's NoSQL databases.
 
-[Back to top](#isadora's-kitchen)
+[Back to top](#isadoras-kitchen)
 
 ## Testing
 
@@ -195,7 +195,7 @@ Family also assisted in testing the site, and reported no major issues.
 - createdBy became a null value when editing a recipe, fixed by checking reference is createdBy instead of created_by.
 - In Edit Recipe, the cuisine dropdown caused update button to not work if not interacted with due to form validation issues - fixed by adding the default value to selected option and removing disabled attribute (editrecipe.html, line 22).
 
-[Back to top](#isadora's-kitchen)
+[Back to top](#isadoras-kitchen)
 
 ## Deployment
 
@@ -262,7 +262,7 @@ To implement this project on Heroku, the following must be completed:
     - **SECRET_KEY** : `<your own secret key>`
 5. The app will now be deployed and built by Heroku and will be ready to run.
 
-[Back to top](#isadora's-kitchen)
+[Back to top](#isadoras-kitchen)
 
 ## Credits
 
@@ -287,4 +287,4 @@ Scott, Rebecca and James from Tutor Support for their excellent ability in nudgi
 
 My fiancee, Isadora, and her mum, Kay, for UX/bug testing this site.
 
-[Back to top](#isadora's-kitchen)
+[Back to top](#isadoras-kitchen)
